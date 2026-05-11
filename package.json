@@ -3,6 +3,9 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "build": "cd client && npm run build",
+    "vercel-build": "npm run build",
+    "postinstall": "cd client && npm install && cd ../server && npm install",
     "start": "npm --prefix server start",
     "client": "npm run dev --prefix client",
     "server": "npm run dev --prefix server"

@@ -22,9 +22,21 @@ npm install
 npm run dev
 ```
 
-The React client runs on `http://localhost:3000` and the Express API runs on `http://localhost:4000`.
+The React client runs on `http://localhost:3000` (or `3001` if the port is occupied) and the Express API runs on `http://localhost:4000`.
 
-If you prefer separate installs:
+### Vercel deployment
+This repository is configured for Vercel deployment with a static React build and a serverless `/api/seed` route.
+
+To deploy:
+
+```bash
+vercel login
+vercel
+```
+
+Vercel will use `vercel.json` and the root `package.json` scripts. The static site is built from `client/dist` and the API route is served from `api/seed.js`.
+
+If you prefer separate installs locally:
 
 ```bash
 cd server

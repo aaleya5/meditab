@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const STORAGE_KEY = 'agencyPMClientData';
-const apiUrl = 'http://localhost:4000/api/seed';
+const apiUrl = '/api/seed';
 const statuses = ['Planning', 'In Progress', 'Review', 'Delivered'];
 const priorities = ['High', 'Medium', 'Low'];
 const capacityLimit = 6;
