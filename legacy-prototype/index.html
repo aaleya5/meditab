@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agency Project Management</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Agency PM Prototype</h1>
+      <p>Track campaigns, tasks, workload, and client status in one place.</p>
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-view="campaigns">Campaigns</button>
+      <button class="tab-btn" data-view="workload">Workload</button>
+      <button class="tab-btn" data-view="client-dashboard">Client Dashboard</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="campaigns" class="view active">
+      <div class="section-header">
+        <div>
+          <h2>Active Campaigns</h2>
+          <p>Manage campaign state, owners, deadlines, and delivery progress.</p>
+        </div>
+        <div>
+          <button id="newCampaignBtn" class="primary-btn">New Campaign</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="campaign-table">
+          <thead>
+            <tr>
+              <th>Campaign</th>
+              <th>Client</th>
+              <th>Owner</th>
+              <th>Deadline</th>
+              <th>Status</th>
+              <th>Progress</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="campaignsBody"></tbody>
+        </table>
+      </div>
+
+      <div id="campaignDetail" class="panel hidden">
+        <div class="panel-header">
+          <div>
+            <h3 id="campaignDetailTitle">Campaign Tasks</h3>
+            <p id="campaignDetailSubtitle"></p>
+          </div>
+          <button id="closeDetail" class="secondary-btn">Close</button>
+        </div>
+
+        <div class="panel-grid">
+          <div class="task-list-wrap">
+            <h4>Tasks</h4>
+            <div class="table-wrap">
+              <table class="task-table">
+                <thead>
+                  <tr>
+                    <th>Task</th>
+                    <th>Assignee</th>
+                    <th>Due</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="taskBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="task-form-card">
+            <h4>Add / Update Task</h4>
+            <form id="taskForm">
+              <label>Title<input type="text" id="taskTitle" required /></label>
+              <label>Assignee
+                <select id="taskAssignee"></select>
+              </label>
+              <label>Due Date<input type="date" id="taskDue" required /></label>
+              <label>Priority
+                <select id="taskPriority">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </label>
+              <label>Status
+                <select id="taskStatus">
+                  <option value="Planning">Planning</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Review">Review</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+              </label>
+              <input type="hidden" id="taskId" />
+              <button class="primary-btn" type="submit">Save Task</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workload" class="view">
+      <div class="section-header">
+        <div>
+          <h2>Team Workload</h2>
+          <p>See who is overloaded and who has capacity for new work.</p>
+        </div>
+      </div>
+
+      <div id="workloadGrid" class="workload-grid"></div>
+    </section>
+
+    <section id="client-dashboard" class="view">
+      <div class="section-header">
+        <div>
+          <h2>Client Dashboard</h2>
+          <p>Read-only client-facing view of campaign status, deliverables, and timeline.</p>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <label>Choose Client
+          <select id="clientSelect"></select>
+        </label>
+        <div id="clientSummary" class="client-summary"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden"></div>
+  <div id="campaignModal" class="modal hidden">
+    <div class="modal-header">
+      <h3>New Campaign</h3>
+      <button id="closeCampaignModal" aria-label="Close">×</button>
+    </div>
+    <form id="campaignForm" class="modal-form">
+      <label>Campaign Name<input type="text" id="campaignName" required /></label>
+      <label>Client Name<input type="text" id="campaignClient" required /></label>
+      <label>Owner<input type="text" id="campaignOwner" required /></label>
+      <label>Deadline<input type="date" id="campaignDeadline" required /></label>
+      <label>Status
+        <select id="campaignStatus">
+          <option value="Planning">Planning</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Review">Review</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+      </label>
+      <button class="primary-btn" type="submit">Create Campaign</button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
